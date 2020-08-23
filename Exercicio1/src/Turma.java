@@ -1,15 +1,20 @@
 public class Turma {
 
     private String horario;
-    private int vagas;
     private Aluno[] alunos;
     private Professor professor;
 
-    private void aceitarMatricula() {
+    public Turma(String horario, Aluno[] alunos, Professor professor) {
+        this.horario = horario;
+        this.alunos = alunos;
+        this.professor = professor;
+    }
+
+    public void aceitarMatricula() {
 
     }
 
-    private void removerMatricula(){
+    public void removerMatricula(){
 
     }
 
@@ -19,14 +24,6 @@ public class Turma {
 
     public void setHorario(String horario) {
         this.horario = horario;
-    }
-
-    public int getVagas() {
-        return vagas;
-    }
-
-    public void setVagas(int vagas) {
-        this.vagas = vagas;
     }
 
     public Aluno[] getAlunos() {

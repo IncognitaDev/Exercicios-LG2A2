@@ -9,8 +9,8 @@ public class Aluno {
         this.cpf = cpf;
     }
 
-    private void solicitarMatricula(){
-        
+    private void solicitarMatricula(Disciplina disciplina){
+        disciplina.aceitarAluno(this);
     }
 
     private void cancelarMatricula(){

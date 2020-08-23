@@ -5,15 +5,21 @@ public class Professor {
     private String prontuario;
     private Disciplina[] disciplinas;
 
-    private Professor(String name, String cpf, String prontuario){
+    public Professor(String name, String cpf, String prontuario){
 
     }
 
-    private void solicitarDisciplina() {
+    public void solicitarDisciplina(Disciplina disciplina) {
+        if(disciplina.aceitarProfessor(this)){
+
+        }
+        else{
+
+        }
 
     }
 
-    private void AceitarDisciplina() {
+    public void AceitarDisciplina() {
 
     }
 
