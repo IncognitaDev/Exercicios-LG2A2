@@ -1,20 +1,47 @@
-public class Aluno {
-    private String name;
-    private String prontuario;
-    private String cpf;
+import utils.DiaHora;
+
+import java.util.ArrayList;
+
+public class Aluno extends Interno {
 
     public Aluno(String name, String prontuario, String cpf){
-        this.name = name;
-        this.prontuario = prontuario;
-        this.cpf = cpf;
+        super(name,prontuario,cpf);
     }
 
-    private void solicitarMatricula(Disciplina disciplina){
-        disciplina.aceitarAluno(this);
+    public void solicitarDisciplina(Disciplina disciplina){
+        if(temAgenda(disciplina)) {
+            if (disciplina.aceitarAluno(this)) {
+                this.disciplinas.add(disciplina);
+            }else{
+                System.out.println("Não Foi Possivel Matricular");
+            }
+            return;
+        }
     }
 
-    private void cancelarMatricula(){
+    public void cancelarMatricula(Disciplina disciplina){
+        if(disciplina.removerAluno(this)){
+            for (Disciplina disciplinaSolicitada: this.disciplinas) {
+                if(disciplinaSolicitada.getId() == disciplina.getId()){
+                    this.disciplinas.remove(disciplina);
+                    return;
+                }
+            }
+        }
+    }
 
+    public boolean temAgenda(Disciplina disciplina){
+        DiaHora horarioDisciplinaSolicitada = disciplina.getHorario();
+        for (Disciplina disciplinaAtual: disciplinas) {
+            DiaHora horarioDisciplinaAtual = disciplinaAtual.getHorario();
+            if(horarioDisciplinaAtual.getDiaDaSemana().equals(horarioDisciplinaSolicitada.getDiaDaSemana())){
+                if(horarioDisciplinaAtual.getHorarioFinal() > horarioDisciplinaSolicitada.getHorarioInicio()){
+                    System.out.println("Conflito de horario");
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public String getName() {

@@ -1,26 +1,48 @@
-public class Professor {
+import utils.DiaHora;
 
-    private String name;
-    private String cpf;
-    private String prontuario;
-    private Disciplina[] disciplinas;
+import java.util.ArrayList;
+
+public class Professor extends Interno {
 
     public Professor(String name, String cpf, String prontuario){
-
+        super(name,cpf,prontuario);
     }
 
     public void solicitarDisciplina(Disciplina disciplina) {
-        if(disciplina.aceitarProfessor(this)){
-
+        if(temAgenda(disciplina)){
+            if(disciplina.aceitarProfessor(this)){
+                this.disciplinas.add(disciplina);
+                System.out.println("Disciplina atribuida");
+            }
+            else{
+                System.out.println("Não foi possivel atribuir disciplina");
+            }
         }
-        else{
 
-        }
 
     }
 
-    public void AceitarDisciplina() {
+    public boolean AceitarDisciplina(Disciplina disciplina) {
+        if(temAgenda(disciplina)){
+            disciplinas.add(disciplina);
+            return true;
+        }
+        return false;
+    }
 
+    public boolean temAgenda(Disciplina disciplina){
+        DiaHora horarioDisciplinaSolicitada = disciplina.getHorario();
+        for (Disciplina disciplinaAtual: disciplinas) {
+            DiaHora horarioDisciplinaAtual = disciplinaAtual.getHorario();
+            if(horarioDisciplinaAtual.getDiaDaSemana().equals(horarioDisciplinaSolicitada.getDiaDaSemana())){
+                if(horarioDisciplinaAtual.getHorarioFinal() > horarioDisciplinaSolicitada.getHorarioInicio()){
+                    System.out.println("Conflito de horario");
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     public String getName() {
@@ -47,11 +69,8 @@ public class Professor {
         this.prontuario = prontuario;
     }
 
-    public Disciplina[] getDisciplinas() {
+    public ArrayList<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
-    public void setDisciplinas(Disciplina[] disciplinas) {
-        this.disciplinas = disciplinas;
-    }
 }
