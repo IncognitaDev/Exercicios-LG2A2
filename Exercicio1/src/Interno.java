@@ -1,3 +1,5 @@
+import utils.DiaHora;
+
 import java.util.ArrayList;
 
 public abstract class Interno {
@@ -11,6 +13,20 @@ public abstract class Interno {
         this.cpf = cpf;
         this.prontuario = prontuario;
         disciplinas = new ArrayList<Disciplina>();
+    }
+
+    protected boolean temAgenda(Disciplina disciplina){
+        DiaHora horarioDisciplinaSolicitada = disciplina.getHorario();
+        for (Disciplina disciplinaAtual: disciplinas) {
+            DiaHora horarioDisciplinaAtual = disciplinaAtual.getHorario();
+            if(horarioDisciplinaAtual.getDiaDaSemana().equals(horarioDisciplinaSolicitada.getDiaDaSemana())){
+                if(horarioDisciplinaAtual.getHorarioFinal() > horarioDisciplinaSolicitada.getHorarioInicio()){
+                    System.out.println("Conflito de horario");
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public String getName() {

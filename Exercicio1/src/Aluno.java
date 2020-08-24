@@ -1,6 +1,3 @@
-import utils.DiaHora;
-
-import java.util.ArrayList;
 
 public class Aluno extends Interno {
 
@@ -15,7 +12,6 @@ public class Aluno extends Interno {
             }else{
                 System.out.println("Não Foi Possivel Matricular");
             }
-            return;
         }
     }
 
@@ -30,19 +26,6 @@ public class Aluno extends Interno {
         }
     }
 
-    public boolean temAgenda(Disciplina disciplina){
-        DiaHora horarioDisciplinaSolicitada = disciplina.getHorario();
-        for (Disciplina disciplinaAtual: disciplinas) {
-            DiaHora horarioDisciplinaAtual = disciplinaAtual.getHorario();
-            if(horarioDisciplinaAtual.getDiaDaSemana().equals(horarioDisciplinaSolicitada.getDiaDaSemana())){
-                if(horarioDisciplinaAtual.getHorarioFinal() > horarioDisciplinaSolicitada.getHorarioInicio()){
-                    System.out.println("Conflito de horario");
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 
     public String getName() {
         return name;
