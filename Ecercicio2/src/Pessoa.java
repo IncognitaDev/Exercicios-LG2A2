@@ -15,10 +15,28 @@ public class Pessoa {
         this.notas = new ArrayList<Nota>();
     }
 
-    public void PassarNoCaixa(Carrinho carrinho, Caixa caixa){
-        if(carrinho.getValorTotal() < this.dinheiro){
-            notas.add(caixa.efetuarVenda(carrinho));
+    public void pegarCarrinho() {
+        if(this.carrinho == null ){
+            carrinho = new Carrinho();
         }
+    }
+
+    public void pegarProduto(Produto produto){
+        this.carrinho.adicionarProduto(produto);
+    }
+
+
+    public void passarNoCaixa( Caixa caixa){
+        if(this.carrinho.getValorTotal() < this.dinheiro){
+            this.setDinheiro(this.dinheiro - this.carrinho.getValorTotal());
+            notas.add(caixa.efetuarVenda(this.carrinho));
+            setCarrinho(null);
+        }
+    }
+
+    public void devolverProduto(Devolucoes devolucoes, Produto produto,int index){
+        float troco = devolucoes.fazerDevolucao(notas.get(index), produto);
+        setDinheiro(this.dinheiro + troco );
     }
 
     public String getName() {

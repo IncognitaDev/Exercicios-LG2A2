@@ -1,12 +1,13 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Nota {
 
     private float valorTotal;
-    private Produto[] produtos;
+    private ArrayList<Produto> produtos;
     private LocalDate data;
 
-    public Nota(float valorTotal, Produto[] produtos, LocalDate data) {
+    public Nota(float valorTotal, ArrayList<Produto> produtos, LocalDate data) {
         this.valorTotal = valorTotal;
         this.produtos = produtos;
         this.data = data;
@@ -20,11 +21,11 @@ public class Nota {
         this.valorTotal = valorTotal;
     }
 
-    public Produto[] getProdutos() {
+    public ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(Produto[] produtos) {
+    public void setProdutos(ArrayList<Produto> produtos) {
         this.produtos = produtos;
     }
 

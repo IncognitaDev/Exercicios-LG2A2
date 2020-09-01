@@ -12,12 +12,16 @@ public class Carrinho implements AcoesProdutos {
 
     @Override
     public void adicionarProduto(Produto produto) {
+
         produtos.add(produto);
+        setValorTotal(this.valorTotal +  produto.getValor());
     }
 
     @Override
     public void removerProduto(Produto produto) {
+
         produtos.remove(produto);
+        setValorTotal(this.valorTotal + produto.getValor());
     }
 
     public ArrayList<Produto> getProdutos() {

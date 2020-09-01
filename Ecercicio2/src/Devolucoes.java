@@ -1,16 +1,19 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Devolucoes {
 
     private int numeroDevolucoes;
+    private ArrayList<Produto> produtosDevolvidos = new ArrayList<Produto>();
 
 
-    public void fazerDevolucao(Nota nota, Produto produto){
+    public float fazerDevolucao(Nota nota, Produto produto){
         LocalDate data = nota.getData();
 
         if(verificaData(data)) {
-            receberDevolução(nota, produto);
+            return receberDevolução(nota, produto);
         };
+        return 0f;
     }
 
     private boolean verificaData(LocalDate data){
@@ -23,7 +26,12 @@ public class Devolucoes {
         return  false;
     }
 
-    private void receberDevolução(Nota nota, Produto produto){
-        nota.getProdutos();
+    private float receberDevolução(Nota nota, Produto produtoDev){
+
+        ArrayList<Produto> produtos =  nota.getProdutos();
+        produtos.remove(produtoDev);
+        produtosDevolvidos.add(produtoDev);
+        nota.setProdutos(produtos);
+        return produtoDev.getValor();
     }
 }

@@ -1,13 +1,14 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Caixa {
 
     private int numeroDeVendas;
     private float caixa;
 
-    public Caixa(int numeroDeVendas, float caixa) {
-        this.numeroDeVendas = numeroDeVendas;
-        this.caixa = caixa;
+    public Caixa() {
+        this.numeroDeVendas = 0;
+        this.caixa = 0f;
     }
 
     public Nota efetuarVenda(Carrinho carrinho){
@@ -19,7 +20,7 @@ public class Caixa {
 
     public Nota gerarNota(LocalDate data, Carrinho carrinho){
         float valor = carrinho.getValorTotal();
-        Produto[] produtos = carrinho.getProdutos().toArray(new Produto[0]);
+        ArrayList<Produto> produtos = carrinho.getProdutos();
         Nota nota = new Nota( valor, produtos , data);
         return nota;
     }
