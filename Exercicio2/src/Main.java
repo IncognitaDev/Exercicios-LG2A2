@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Main {
@@ -13,12 +12,11 @@ public class Main {
         Caixa c1 = new Caixa();
         Devolucoes d1 = new Devolucoes(e1);
 
-        Pessoa per1 = new Pessoa("Luis", "123456", 50.30f);
+        Cliente per1 = new Cliente("Luis", "123456", 50.30f);
 
         e1.adicionarProduto(p1);
         e1.adicionarProduto(p2);
 
-        per1.pegarCarrinho();
         per1.pegarProduto(p1, e1);
         per1.pegarProduto(p2, e1);
         System.out.println(per1.getDinheiro());

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Pessoa {
+public class Cliente {
 
     private String name;
     private String cpf;
@@ -8,17 +8,12 @@ public class Pessoa {
     private ArrayList<Nota> notas;
     private Carrinho carrinho;
 
-    public Pessoa(String name, String cpf, float dinheiro) {
+    public Cliente(String name, String cpf, float dinheiro) {
         this.name = name;
         this.cpf = cpf;
         this.dinheiro = dinheiro;
         this.notas = new ArrayList<Nota>();
-    }
-
-    public void pegarCarrinho() {
-        if(this.carrinho == null ){
-            carrinho = new Carrinho();
-        }
+        carrinho = new Carrinho();
     }
 
     public void pegarProduto(Produto produto, Estoque estoque){

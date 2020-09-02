@@ -14,6 +14,7 @@ public class Caixa {
     public Nota efetuarVenda(Carrinho carrinho){
         LocalDate data =  LocalDate.now();
         caixa += carrinho.getValorTotal();
+        setNumeroDeVendas(numeroDeVendas + 1);
         Nota nota = gerarNota(data, carrinho);
         return nota;
     }
