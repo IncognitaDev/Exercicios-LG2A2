@@ -8,6 +8,10 @@ public class Estoque implements AcoesProdutos{
         return produtos;
     }
 
+    public Estoque(ArrayList<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
     public void setProdutos(ArrayList<Produto> produtos) {
         this.produtos = produtos;
     }
@@ -20,5 +24,12 @@ public class Estoque implements AcoesProdutos{
     @Override
     public void removerProduto(Produto produto) {
         produtos.remove(produto);
+    }
+
+    public boolean disponivel(Produto produto){
+        if(produtos.contains(produto)){
+            return true;
+        }
+        return false;
     }
 }

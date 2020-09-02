@@ -3,9 +3,13 @@ import java.util.ArrayList;
 
 public class Devolucoes {
 
+    private Estoque estoque;
     private int numeroDevolucoes;
     private ArrayList<Produto> produtosDevolvidos = new ArrayList<Produto>();
 
+    public Devolucoes(Estoque estoque) {
+        this.estoque = estoque;
+    }
 
     public float fazerDevolucao(Nota nota, Produto produto){
         LocalDate data = nota.getData();
@@ -31,6 +35,7 @@ public class Devolucoes {
         ArrayList<Produto> produtos =  nota.getProdutos();
         produtos.remove(produtoDev);
         produtosDevolvidos.add(produtoDev);
+        estoque.adicionarProduto(produtoDev);
         nota.setProdutos(produtos);
         return produtoDev.getValor();
     }

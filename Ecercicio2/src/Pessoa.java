@@ -21,8 +21,13 @@ public class Pessoa {
         }
     }
 
-    public void pegarProduto(Produto produto){
-        this.carrinho.adicionarProduto(produto);
+    public void pegarProduto(Produto produto, Estoque estoque){
+        if (estoque.disponivel(produto)) {
+            this.carrinho.adicionarProduto(produto);
+            estoque.removerProduto(produto);
+        }else {
+            System.out.println("Produto não disponivel");
+        }
     }
 
 
